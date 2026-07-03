@@ -56,7 +56,7 @@ export function WhyChooseUs() {
                   A joyful home for <span className="text-gradient">big little dreams</span>
                 </>
               }
-              subtitle="Masti Ki Paathshaala began with one simple belief — that children learn best when they're having fun. Today we're a premium academy where play and purpose meet, helping kids aged 3–16 discover their talents and lead with confidence."
+              subtitle="Masti Ki Paathshaala began with one simple belief — that children learn best when they're having fun. Today we're a premium academy where play and purpose meet, helping kids aged 3–16 discover their talents and lead with confidence.” To “Masti Ki Paathshaala began with one simple belief — that children learn best when they're having fun. Today we're a premium academy where play and purpose meet, helping kids and adults discover their talents and lead with confidence"
             />
             <Reveal delay={0.15}>
               <div className="mt-8 grid gap-3 sm:grid-cols-2">

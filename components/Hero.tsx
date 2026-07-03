@@ -107,8 +107,7 @@ export function Hero() {
             transition={{ duration: 0.7, delay: 0.15 }}
             className="mx-auto mt-7 max-w-xl text-lg leading-relaxed text-ink/65 lg:mx-0"
           >
-            A premium learning academy for curious kids aged 3–16. Robotics, coding,
-            chess, music, dance & more — taught with joy, in small caring batches.
+            “A premium learning academy for curious kids aged 3–16. Robotics, coding, chess, music, dance & more — taught with joy, in small caring batches.” To “A premium 21st century skill development academy for kids & adults. Robotics, coding, chess, music, dance & more — taught with joy, in small caring batches.
           </motion.p>
 
           <motion.div

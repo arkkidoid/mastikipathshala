@@ -27,9 +27,9 @@ export function WhyChooseUs() {
                 />
                 <div className="mt-6 grid grid-cols-3 gap-3 text-center">
                   {[
-                    { k: "8+", v: "Years" },
-                    { k: "2.5K+", v: "Kids" },
-                    { k: "4.9★", v: "Rated" },
+                    { k: "9", v: "Courses" },
+                    { k: "250+", v: "Learners" },
+                    { k: "12+", v: "Mentors" },
                   ].map((s) => (
                     <div key={s.v} className="rounded-2xl bg-cream py-3">
                       <p className="font-display text-xl font-extrabold text-ink">{s.k}</p>
@@ -56,7 +56,7 @@ export function WhyChooseUs() {
                   A joyful home for <span className="text-gradient">big little dreams</span>
                 </>
               }
-              subtitle="Masti Ki Paathshaala began with one simple belief — that children learn best when they're having fun. Today we're a premium academy where play and purpose meet, helping kids aged 3–16 discover their talents and lead with confidence.” To “Masti Ki Paathshaala began with one simple belief — that children learn best when they're having fun. Today we're a premium academy where play and purpose meet, helping kids and adults discover their talents and lead with confidence"
+              subtitle="Masti Ki Paathshaala began with one simple belief — that children learn best when they're having fun. Today we're a premium academy where play and purpose meet, helping kids and adults discover their talents and lead with confidence."
             />
             <Reveal delay={0.15}>
               <div className="mt-8 grid gap-3 sm:grid-cols-2">

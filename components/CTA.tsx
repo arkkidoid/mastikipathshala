@@ -75,7 +75,7 @@ export function CTA() {
                       <input required type="text" placeholder="e.g. Priya Sharma" className="input" />
                     </Field>
                     <Field label="Phone number">
-                      <input required type="tel" placeholder="+91 98765 43210" className="input" />
+                      <input required type="tel" placeholder="Your 10-digit mobile number" className="input" />
                     </Field>
                     <Field label="Choose a program">
                       <select required className="input" defaultValue="">

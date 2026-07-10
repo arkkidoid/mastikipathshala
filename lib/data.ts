@@ -3,13 +3,13 @@ import type { IconName } from "@/components/ui/Icon";
 export type Accent = "orange" | "sun" | "sky" | "mint" | "grape" | "rose";
 
 export const NAV_LINKS = [
-  { label: "Home", href: "#home" },
-  { label: "Programs", href: "#programs" },
-  { label: "About", href: "#about" },
-  { label: "Gallery", href: "#gallery" },
-  { label: "Events", href: "#events" },
-  { label: "Testimonials", href: "#testimonials" },
-  { label: "Contact", href: "#contact" },
+  { label: "Home", href: "/#home" },
+  { label: "Programs", href: "/#programs" },
+  { label: "About", href: "/#about" },
+  { label: "Gallery", href: "/#gallery" },
+  { label: "Events", href: "/#events" },
+  { label: "Testimonials", href: "/#testimonials" },
+  { label: "Contact", href: "/#contact" },
 ];
 
 export type Program = {
@@ -140,12 +140,13 @@ export const FEATURES: {
   },
 ];
 
+// NOTE: modest placeholder figures — update with your real numbers anytime.
 export const METRICS = [
-  { value: 2500, suffix: "+", label: "Students Enrolled" },
+  { value: 250, suffix: "+", label: "Students Enrolled" },
   { value: 9, suffix: "", label: "Signature Courses" },
-  { value: 8, suffix: "+", label: "Years of Experience" },
-  { value: 120, suffix: "+", label: "Events Conducted" },
-  { value: 40, suffix: "+", label: "Certified Mentors" },
+  { value: 3, suffix: "+", label: "Years of Experience" },
+  { value: 20, suffix: "+", label: "Events Conducted" },
+  { value: 12, suffix: "+", label: "Certified Mentors" },
 ];
 
 export const JOURNEY: {
@@ -337,8 +338,8 @@ export const MENTORS: Mentor[] = [
 
 export const FAQS = [
   {
-    q: "What ages do you teach?",
-    a: "We welcome children aged 3 to 16. Every program is grouped by age and skill so your child always learns at just the right pace.",
+    q: "Who can join?",
+    a: "We welcome learners of all ages — from young children to teens and adults. Every program is grouped by age and skill so everyone learns at just the right pace.",
   },
   {
     q: "How does the free trial work?",
@@ -380,10 +381,16 @@ export const GALLERY: {
 ];
 
 export const CONTACT = {
-  phone: "+91 98765 43210",
-  phoneHref: "tel:+919876543210",
-  whatsapp: "https://wa.me/919876543210",
-  email: "hello@mastikipaathshaala.com",
-  address: "2nd Floor, Sunrise Plaza, MG Road, Bengaluru, Karnataka 560001",
+  phone: "+91 96116 13613",
+  phoneHref: "tel:+919611613613",
+  whatsapp: "https://wa.me/919611613613",
+  email: "admin@arkkidoid.in",
+  emailHref: "mailto:admin@arkkidoid.in",
+  instagram: "https://www.instagram.com/masti_ki_paathshaala",
+  instagramHandle: "@masti_ki_paathshaala",
+  appName: "ARK Kidoid",
+  address: "Multiple branches — call or WhatsApp us for directions to your nearest centre.",
+  addressShort: "Branches across the city",
+  mapsSearch: "https://www.google.com/maps/search/Masti+Ki+Paathshaala",
   hours: "Mon–Sat · 9:00 AM – 7:00 PM",
 };

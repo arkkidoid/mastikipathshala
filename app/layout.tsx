@@ -17,21 +17,21 @@ const sans = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Masti Ki Paathshaala — Learn & Lead | Premium Kids Learning Academy",
+  title: "Masti Ki Paathshaala — Learn & Lead | 21st-Century Skills Academy",
   description:
-    "A premium learning academy for children aged 3–16. Robotics, Coding & AI, Chess, Music, Dance, Art, Public Speaking & more — where every child learns to lead. Book a free trial today.",
+    "A premium 21st-century skill development academy for kids & adults. Robotics, Coding & AI, Chess, Music, Dance, Art, Public Speaking & more — taught with joy in small caring batches. Book a free trial today.",
   keywords: [
-    "kids learning academy",
-    "robotics for kids",
-    "coding for kids",
+    "skill development academy",
+    "robotics classes",
+    "coding classes",
     "chess classes",
-    "after school programs",
+    "learning academy for kids and adults",
     "Masti Ki Paathshaala",
   ],
   openGraph: {
     title: "Masti Ki Paathshaala — Learn & Lead",
     description:
-      "Where joy meets learning. Premium programs for curious children aged 3–16.",
+      "Where joy meets learning. Premium 21st-century skill programs for kids & adults.",
     type: "website",
   },
   icons: { icon: "/mkplogo.png" },

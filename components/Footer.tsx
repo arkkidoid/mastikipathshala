@@ -6,7 +6,7 @@ import { NAV_LINKS, PROGRAMS, CONTACT } from "@/lib/data";
 import { Icon, IconName } from "./ui/Icon";
 
 const SOCIALS: { icon: IconName; href: string; label: string }[] = [
-  { icon: "instagram", href: "#", label: "Instagram" },
+  { icon: "instagram", href: CONTACT.instagram, label: "Instagram" },
   { icon: "facebook", href: "#", label: "Facebook" },
   { icon: "youtube", href: "#", label: "YouTube" },
   { icon: "whatsapp", href: CONTACT.whatsapp, label: "WhatsApp" },
@@ -91,7 +91,7 @@ export function Footer() {
 
           <FooterCol title="Programs">
             {PROGRAMS.slice(0, 7).map((p) => (
-              <FooterLink key={p.title} href="#programs">
+              <FooterLink key={p.title} href="/#programs">
                 {p.title}
               </FooterLink>
             ))}
@@ -112,7 +112,7 @@ export function Footer() {
               <Icon name="map" size={15} className="mt-0.5 shrink-0" /> {CONTACT.address}
             </li>
             <li>
-              <a href="#book" className="btn bg-white text-ink mt-2 hover:-translate-y-0.5">
+              <a href="/#book" className="btn bg-white text-ink mt-2 hover:-translate-y-0.5">
                 Book Free Trial <Icon name="arrow" size={15} />
               </a>
             </li>
@@ -125,7 +125,7 @@ export function Footer() {
             © {new Date().getFullYear()} Masti Ki Paathshaala. Learn &amp; Lead. All rights reserved.
           </p>
           <div className="flex gap-6 text-sm text-white/50">
-            <a href="#" className="transition hover:text-white">Privacy</a>
+            <a href="/privacy-policy" className="transition hover:text-white">Privacy</a>
             <a href="#" className="transition hover:text-white">Terms</a>
             <a href="#" className="transition hover:text-white">Safeguarding</a>
           </div>

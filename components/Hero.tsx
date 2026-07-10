@@ -68,7 +68,7 @@ export function Hero() {
                 <span key={c} className={`h-4 w-4 rounded-full ${c} ring-2 ring-white`} />
               ))}
             </span>
-            Trusted by 2,500+ happy families
+            Loved by parents, kids &amp; adults
           </motion.span>
 
           <motion.h1
@@ -107,7 +107,9 @@ export function Hero() {
             transition={{ duration: 0.7, delay: 0.15 }}
             className="mx-auto mt-7 max-w-xl text-lg leading-relaxed text-ink/65 lg:mx-0"
           >
-            “A premium learning academy for curious kids aged 3–16. Robotics, coding, chess, music, dance & more — taught with joy, in small caring batches.” To “A premium 21st century skill development academy for kids & adults. Robotics, coding, chess, music, dance & more — taught with joy, in small caring batches.
+            A premium 21st-century skill development academy for kids &amp; adults.
+            Robotics, coding, chess, music, dance &amp; more — taught with joy, in
+            small caring batches.
           </motion.p>
 
           <motion.div
@@ -138,7 +140,7 @@ export function Hero() {
               ))}
             </div>
             <p className="text-sm font-medium text-ink/60">
-              <span className="font-bold text-ink">4.9/5</span> from 600+ parent reviews
+              Loved by parents &amp; learners across our branches
             </p>
           </motion.div>
         </div>

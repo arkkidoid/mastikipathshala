@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { accent } from "@/lib/accents";
+import { CONTACT } from "@/lib/data";
 import { Icon, IconName } from "./ui/Icon";
 import { Reveal } from "./ui/Reveal";
 
@@ -25,11 +26,13 @@ export function Instagram() {
                 <Icon name="instagram" size={26} />
               </span>
               <div>
-                <p className="font-display text-lg font-extrabold text-ink">@mastikipaathshaala</p>
+                <p className="font-display text-lg font-extrabold text-ink">
+                  {CONTACT.instagramHandle}
+                </p>
                 <p className="text-sm text-ink/55">Follow the daily joy on Instagram</p>
               </div>
             </div>
-            <a href="#" className="btn-ghost">
+            <a href={CONTACT.instagram} target="_blank" rel="noreferrer" className="btn-ghost">
               <Icon name="instagram" size={16} /> Follow us
             </a>
           </div>
@@ -41,7 +44,9 @@ export function Instagram() {
             return (
               <Reveal key={i} delay={i * 0.05}>
                 <motion.a
-                  href="#"
+                  href={CONTACT.instagram}
+                  target="_blank"
+                  rel="noreferrer"
                   whileHover={{ scale: 1.04 }}
                   className={`group relative flex aspect-square items-center justify-center overflow-hidden rounded-3xl bg-gradient-to-br ${a.grad} ring-1 ring-ink/5`}
                 >

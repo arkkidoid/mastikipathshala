@@ -62,6 +62,44 @@ body {
   }
 }
 
+/* Readable legal / long-form text (privacy policy) */
+.prose-clause {
+  color: rgba(18, 53, 74, 0.72);
+  font-size: 0.975rem;
+  line-height: 1.7;
+}
+.prose-clause p + p {
+  margin-top: 0.85rem;
+}
+.prose-clause ul {
+  margin: 0.75rem 0;
+  padding-left: 1.1rem;
+  list-style: none;
+}
+.prose-clause li {
+  position: relative;
+  padding-left: 1.1rem;
+  margin-top: 0.5rem;
+}
+.prose-clause li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.6em;
+  height: 7px;
+  width: 7px;
+  border-radius: 999px;
+  background: #ff7a3d;
+}
+.prose-clause strong {
+  color: #12354a;
+  font-weight: 600;
+}
+.prose-clause a {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
 /* subtle gradient text */
 .text-gradient {
   background: linear-gradient(100deg, #ff7a3d 0%, #ffc63d 50%, #42b6e8 100%);

@@ -43,9 +43,6 @@ const CHANNELS: {
 
 export function Contact() {
   const [done, setDone] = useState(false);
-  const mapSrc = `https://www.google.com/maps?q=${encodeURIComponent(
-    CONTACT.address
-  )}&output=embed`;
 
   return (
     <section id="contact" className="relative py-20 sm:py-28">
@@ -54,7 +51,7 @@ export function Contact() {
           eyebrow="Get in Touch"
           title={
             <>
-              Let's start your child's <span className="text-gradient">happy journey</span>
+              Let's start your <span className="text-gradient">happy journey</span>
             </>
           }
           subtitle="Have a question or ready to enrol? Reach out — we'd love to meet your family."
@@ -93,20 +90,52 @@ export function Contact() {
                     <Icon name="map" size={20} />
                   </span>
                   <div>
-                    <p className="font-bold text-ink">Visit our campus</p>
+                    <p className="font-bold text-ink">Visit a branch near you</p>
                     <p className="text-sm text-ink/60">{CONTACT.address}</p>
                     <p className="mt-1 flex items-center gap-1.5 text-xs font-semibold text-ink/45">
                       <Icon name="clock" size={13} /> {CONTACT.hours}
                     </p>
                   </div>
                 </div>
-                <iframe
-                  title="Masti Ki Paathshaala location map"
-                  src={mapSrc}
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  className="h-64 w-full border-0 grayscale-[0.15]"
-                />
+
+                {/* Decorative map panel + directions */}
+                <div className="relative flex h-64 items-center justify-center overflow-hidden bg-gradient-to-br from-sky-tint via-mint-tint to-grape-tint">
+                  <div className="absolute inset-0 opacity-[0.18] [background-image:linear-gradient(#12354a_1px,transparent_1px),linear-gradient(90deg,#12354a_1px,transparent_1px)] [background-size:34px_34px]" />
+                  <svg className="absolute inset-0 h-full w-full" preserveAspectRatio="none" viewBox="0 0 400 260" aria-hidden="true">
+                    <path d="M-10 70 C 90 40, 130 150, 240 120 S 400 60, 430 110" fill="none" stroke="#42B6E8" strokeWidth="6" strokeLinecap="round" opacity="0.5" />
+                    <path d="M40 -10 C 70 90, 190 110, 210 200 S 300 270, 330 300" fill="none" stroke="#3FC79A" strokeWidth="6" strokeLinecap="round" opacity="0.45" />
+                  </svg>
+                  <div className="relative flex flex-col items-center text-center">
+                    <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-white text-orange shadow-soft">
+                      <Icon name="map" size={28} />
+                    </span>
+                    <p className="mt-3 max-w-[15rem] text-sm font-semibold text-ink/70">
+                      {CONTACT.addressShort} — we'll help you find the nearest one.
+                    </p>
+                    <a
+                      href={CONTACT.mapsSearch}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="btn-ink mt-4 !py-2.5 text-xs"
+                    >
+                      <Icon name="compass" size={15} /> Get Directions
+                    </a>
+                  </div>
+                </div>
+
+                {/* Instagram row */}
+                <a
+                  href={CONTACT.instagram}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center gap-3 border-t border-ink/5 p-4 transition hover:bg-cream"
+                >
+                  <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-rose via-orange to-sun text-white">
+                    <Icon name="instagram" size={18} />
+                  </span>
+                  <span className="text-sm font-bold text-ink">{CONTACT.instagramHandle}</span>
+                  <span className="ml-auto text-xs font-semibold text-ink/45">Follow us →</span>
+                </a>
               </div>
             </Reveal>
           </div>

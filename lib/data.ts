@@ -380,17 +380,17 @@ export const GALLERY: {
   { title: "Speak-Up Stage", accent: "sky", icon: "mic", h: "short" },
 ];
 
-// Mobile app. TODO: replace the store URLs with the real listings once published.
+// Mobile app. TODO: replace appStore with the real listing once published on iOS.
 export const APP = {
   name: "ARK Kidoid",
-  playStore: "https://play.google.com/store/search?q=ARK%20Kidoid&c=apps",
+  playStore: "https://play.google.com/store/apps/details?id=com.arkkidoid.app",
   appStore: "https://apps.apple.com/search?term=ARK+Kidoid",
 };
 
 export const CONTACT = {
-  phone: "+91 96116 13613",
-  phoneHref: "tel:+919611613613",
-  whatsapp: "https://wa.me/919611613613",
+  phone: "+91 98800 53702",
+  phoneHref: "tel:+919880053702",
+  whatsapp: "https://wa.me/919880053702",
   email: "admin@arkkidoid.in",
   emailHref: "mailto:admin@arkkidoid.in",
   instagram: "https://www.instagram.com/masti_ki_paathshaala",

@@ -380,6 +380,13 @@ export const GALLERY: {
   { title: "Speak-Up Stage", accent: "sky", icon: "mic", h: "short" },
 ];
 
+// Mobile app. TODO: replace the store URLs with the real listings once published.
+export const APP = {
+  name: "ARK Kidoid",
+  playStore: "https://play.google.com/store/search?q=ARK%20Kidoid&c=apps",
+  appStore: "https://apps.apple.com/search?term=ARK+Kidoid",
+};
+
 export const CONTACT = {
   phone: "+91 96116 13613",
   phoneHref: "tel:+919611613613",

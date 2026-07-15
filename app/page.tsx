@@ -6,6 +6,7 @@ import { LearningJourney } from "@/components/LearningJourney";
 import { Metrics } from "@/components/Metrics";
 import { Gallery } from "@/components/Gallery";
 import { Mentors } from "@/components/Mentors";
+import { AppShowcase } from "@/components/AppShowcase";
 import { Testimonials } from "@/components/Testimonials";
 import { Events } from "@/components/Events";
 import { Recognition } from "@/components/Recognition";
@@ -29,6 +30,7 @@ export default function Home() {
         <Metrics />
         <Gallery />
         <Mentors />
+        <AppShowcase />
         <Testimonials />
         <Events />
         <Recognition />

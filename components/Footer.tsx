@@ -63,7 +63,7 @@ export function Footer() {
               </span>
             </div>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-white/60">
-              A premium learning academy where children aged 3–16 learn with joy and grow into confident leaders.
+              A premium learning academy where kids and adults learn with joy and grow into confident leaders.
             </p>
             <div className="mt-5 flex gap-3">
               {SOCIALS.map((s) => (

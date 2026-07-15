@@ -8,6 +8,39 @@ import { Reveal } from "./ui/Reveal";
 
 export function CTA() {
   const [done, setDone] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setError(null);
+    setSending(true);
+    const fd = new FormData(e.currentTarget);
+    try {
+      const res = await fetch("/api/book", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          type: "trial",
+          name: fd.get("name"),
+          phone: fd.get("phone"),
+          program: fd.get("program"),
+          company: fd.get("company"), // honeypot
+        }),
+      });
+      const data = await res.json().catch(() => ({ ok: false }));
+      if (!res.ok || !data.ok) {
+        throw new Error(data.error || "Something went wrong.");
+      }
+      setDone(true);
+    } catch (err) {
+      setError(
+        err instanceof Error ? err.message : "Something went wrong. Please try again."
+      );
+    } finally {
+      setSending(false);
+    }
+  }
 
   return (
     <section id="book" className="relative py-16 sm:py-24">
@@ -63,22 +96,27 @@ export function CTA() {
                     </button>
                   </div>
                 ) : (
-                  <form
-                    onSubmit={(e) => {
-                      e.preventDefault();
-                      setDone(true);
-                    }}
-                    className="space-y-4"
-                  >
+                  <form onSubmit={onSubmit} className="space-y-4">
                     <h3 className="heading text-lg">Reserve your spot</h3>
+
+                    {/* honeypot — hidden from humans, catches bots */}
+                    <input
+                      type="text"
+                      name="company"
+                      tabIndex={-1}
+                      autoComplete="off"
+                      aria-hidden="true"
+                      className="absolute left-[-9999px] h-0 w-0 opacity-0"
+                    />
+
                     <Field label="Parent's name">
-                      <input required type="text" placeholder="e.g. Priya Sharma" className="input" />
+                      <input required name="name" type="text" placeholder="e.g. Priya Sharma" className="input" />
                     </Field>
                     <Field label="Phone number">
-                      <input required type="tel" placeholder="Your 10-digit mobile number" className="input" />
+                      <input required name="phone" type="tel" placeholder="Your 10-digit mobile number" className="input" />
                     </Field>
                     <Field label="Choose a program">
-                      <select required className="input" defaultValue="">
+                      <select required name="program" className="input" defaultValue="">
                         <option value="" disabled>
                           Select a program
                         </option>
@@ -87,9 +125,16 @@ export function CTA() {
                         ))}
                       </select>
                     </Field>
-                    <button type="submit" className="btn-primary w-full">
-                      Book Free Trial
-                      <Icon name="arrow" size={16} />
+
+                    {error && (
+                      <p role="alert" className="rounded-2xl bg-rose-tint px-4 py-3 text-xs font-semibold text-rose">
+                        {error}
+                      </p>
+                    )}
+
+                    <button type="submit" disabled={sending} className="btn-primary w-full disabled:opacity-70">
+                      {sending ? "Sending…" : "Book Free Trial"}
+                      {!sending && <Icon name="arrow" size={16} />}
                     </button>
                     <p className="text-center text-xs text-ink/45">
                       By booking you agree to be contacted about your trial class.

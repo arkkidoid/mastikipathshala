@@ -43,6 +43,42 @@ const CHANNELS: {
 
 export function Contact() {
   const [done, setDone] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setError(null);
+    setSending(true);
+    const fd = new FormData(e.currentTarget);
+    try {
+      const res = await fetch("/api/book", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          type: "enquiry",
+          name: fd.get("name"),
+          phone: fd.get("phone"),
+          email: fd.get("email"),
+          age: fd.get("age"),
+          program: fd.get("program"),
+          message: fd.get("message"),
+          company: fd.get("company"), // honeypot
+        }),
+      });
+      const data = await res.json().catch(() => ({ ok: false }));
+      if (!res.ok || !data.ok) {
+        throw new Error(data.error || "Something went wrong.");
+      }
+      setDone(true);
+    } catch (err) {
+      setError(
+        err instanceof Error ? err.message : "Something went wrong. Please try again."
+      );
+    } finally {
+      setSending(false);
+    }
+  }
 
   return (
     <section id="contact" className="relative py-20 sm:py-28">
@@ -157,34 +193,39 @@ export function Contact() {
                   </button>
                 </div>
               ) : (
-                <form
-                  onSubmit={(e) => {
-                    e.preventDefault();
-                    setDone(true);
-                  }}
-                  className="space-y-4"
-                >
+                <form onSubmit={onSubmit} className="space-y-4">
                   <h3 className="heading text-xl">Admission enquiry</h3>
                   <p className="-mt-2 text-sm text-ink/55">
                     Fill this in and we'll craft the perfect plan for your child.
                   </p>
+
+                  {/* honeypot — hidden from humans, catches bots */}
+                  <input
+                    type="text"
+                    name="company"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    aria-hidden="true"
+                    className="absolute left-[-9999px] h-0 w-0 opacity-0"
+                  />
+
                   <div className="grid gap-4 sm:grid-cols-2">
                     <Field label="Parent's name">
-                      <input required type="text" placeholder="Full name" className="cinput" />
+                      <input required name="name" type="text" placeholder="Full name" className="cinput" />
                     </Field>
                     <Field label="Phone">
-                      <input required type="tel" placeholder="Mobile number" className="cinput" />
+                      <input required name="phone" type="tel" placeholder="Mobile number" className="cinput" />
                     </Field>
                   </div>
                   <Field label="Email">
-                    <input type="email" placeholder="you@email.com" className="cinput" />
+                    <input name="email" type="email" placeholder="you@email.com" className="cinput" />
                   </Field>
                   <div className="grid gap-4 sm:grid-cols-2">
-                    <Field label="Child's age">
-                      <input required type="number" min={3} max={16} placeholder="3–16" className="cinput" />
+                    <Field label="Learner's age">
+                      <input required name="age" type="number" min={3} max={99} placeholder="Age" className="cinput" />
                     </Field>
                     <Field label="Program of interest">
-                      <select required className="cinput" defaultValue="">
+                      <select required name="program" className="cinput" defaultValue="">
                         <option value="" disabled>
                           Select
                         </option>
@@ -195,11 +236,18 @@ export function Contact() {
                     </Field>
                   </div>
                   <Field label="Message (optional)">
-                    <textarea rows={3} placeholder="Tell us about your child…" className="cinput resize-none" />
+                    <textarea name="message" rows={3} placeholder="Tell us about your child…" className="cinput resize-none" />
                   </Field>
-                  <button type="submit" className="btn-primary w-full">
-                    Send enquiry
-                    <Icon name="arrow" size={16} />
+
+                  {error && (
+                    <p role="alert" className="rounded-2xl bg-rose-tint px-4 py-3 text-xs font-semibold text-rose">
+                      {error}
+                    </p>
+                  )}
+
+                  <button type="submit" disabled={sending} className="btn-primary w-full disabled:opacity-70">
+                    {sending ? "Sending…" : "Send enquiry"}
+                    {!sending && <Icon name="arrow" size={16} />}
                   </button>
                 </form>
               )}

@@ -44,7 +44,29 @@ function Floater({ f, reduce }: { f: (typeof FLOATERS)[number]; reduce: boolean 
   );
 }
 
-export function Hero() {
+type HeroData = {
+  eyebrow: string;
+  titleLead: string;
+  titleHighlight: string;
+  subtitle: string;
+  primaryCta: string;
+  secondaryCta: string;
+  ratingText: string;
+};
+
+const DEFAULT_HERO: HeroData = {
+  eyebrow: "Loved by parents, kids & adults",
+  titleLead: "Where every child learns to",
+  titleHighlight: "lead",
+  subtitle:
+    "A premium 21st-century skill development academy for kids & adults. Robotics, coding, chess, music, dance & more — taught with joy, in small caring batches.",
+  primaryCta: "Book Free Trial",
+  secondaryCta: "Explore Programs",
+  ratingText: "Loved by parents & learners across our branches",
+};
+
+export function Hero({ hero }: { hero?: Partial<HeroData> }) {
+  const h = { ...DEFAULT_HERO, ...(hero || {}) };
   const reduce = useReducedMotion();
 
   return (
@@ -68,7 +90,7 @@ export function Hero() {
                 <span key={c} className={`h-4 w-4 rounded-full ${c} ring-2 ring-white`} />
               ))}
             </span>
-            Loved by parents, kids &amp; adults
+            {h.eyebrow}
           </motion.span>
 
           <motion.h1
@@ -77,11 +99,9 @@ export function Hero() {
             transition={{ duration: 0.7, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
             className="heading mt-6 text-4xl sm:text-6xl lg:text-[4.25rem]"
           >
-            Where every child
-            <br />
-            learns to{" "}
+            {h.titleLead}{" "}
             <span className="relative whitespace-nowrap text-gradient">
-              lead
+              {h.titleHighlight}
               <svg
                 className="absolute -bottom-3 left-0 w-full"
                 viewBox="0 0 200 20"
@@ -107,9 +127,7 @@ export function Hero() {
             transition={{ duration: 0.7, delay: 0.15 }}
             className="mx-auto mt-7 max-w-xl text-lg leading-relaxed text-ink/65 lg:mx-0"
           >
-            A premium 21st-century skill development academy for kids &amp; adults.
-            Robotics, coding, chess, music, dance &amp; more — taught with joy, in
-            small caring batches.
+            {h.subtitle}
           </motion.p>
 
           <motion.div
@@ -119,11 +137,11 @@ export function Hero() {
             className="mt-9 flex flex-col items-center gap-3 sm:flex-row lg:justify-start"
           >
             <a href="#book" className="btn-primary w-full sm:w-auto">
-              Book Free Trial
+              {h.primaryCta}
               <Icon name="arrow" size={16} />
             </a>
             <a href="#programs" className="btn-ghost w-full sm:w-auto">
-              Explore Programs
+              {h.secondaryCta}
               <Icon name="compass" size={16} />
             </a>
           </motion.div>
@@ -139,9 +157,7 @@ export function Hero() {
                 <Icon key={i} name="star" size={18} />
               ))}
             </div>
-            <p className="text-sm font-medium text-ink/60">
-              Loved by parents &amp; learners across our branches
-            </p>
+            <p className="text-sm font-medium text-ink/60">{h.ratingText}</p>
           </motion.div>
         </div>
 

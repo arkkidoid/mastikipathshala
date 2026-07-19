@@ -2,18 +2,24 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { NAV_LINKS, PROGRAMS, CONTACT } from "@/lib/data";
+import { NAV_LINKS, PROGRAMS, CONTACT, type ContactInfo, type Program } from "@/lib/data";
 import { Icon, IconName } from "./ui/Icon";
 
-const SOCIALS: { icon: IconName; href: string; label: string }[] = [
-  { icon: "instagram", href: CONTACT.instagram, label: "Instagram" },
-  { icon: "facebook", href: "#", label: "Facebook" },
-  { icon: "youtube", href: "#", label: "YouTube" },
-  { icon: "whatsapp", href: CONTACT.whatsapp, label: "WhatsApp" },
-];
-
-export function Footer() {
+export function Footer({
+  contact,
+  programs = PROGRAMS,
+}: {
+  contact?: Partial<ContactInfo>;
+  programs?: Program[];
+}) {
   const [sent, setSent] = useState(false);
+  const C = { ...CONTACT, ...(contact || {}) };
+  const SOCIALS: { icon: IconName; href: string; label: string }[] = [
+    { icon: "instagram", href: C.instagram, label: "Instagram" },
+    { icon: "facebook", href: "#", label: "Facebook" },
+    { icon: "youtube", href: "#", label: "YouTube" },
+    { icon: "whatsapp", href: C.whatsapp, label: "WhatsApp" },
+  ];
 
   return (
     <footer className="relative mt-10 overflow-hidden bg-ink text-white">
@@ -90,7 +96,7 @@ export function Footer() {
           </FooterCol>
 
           <FooterCol title="Programs">
-            {PROGRAMS.slice(0, 7).map((p) => (
+            {programs.slice(0, 7).map((p) => (
               <FooterLink key={p.title} href="/#programs">
                 {p.title}
               </FooterLink>
@@ -99,17 +105,17 @@ export function Footer() {
 
           <FooterCol title="Get in Touch">
             <li>
-              <a href={CONTACT.phoneHref} className="flex items-center gap-2 text-sm text-white/60 transition hover:text-white">
-                <Icon name="phone" size={15} /> {CONTACT.phone}
+              <a href={C.phoneHref} className="flex items-center gap-2 text-sm text-white/60 transition hover:text-white">
+                <Icon name="phone" size={15} /> {C.phone}
               </a>
             </li>
             <li>
-              <a href={`mailto:${CONTACT.email}`} className="flex items-center gap-2 text-sm text-white/60 transition hover:text-white">
-                <Icon name="mail" size={15} /> {CONTACT.email}
+              <a href={`mailto:${C.email}`} className="flex items-center gap-2 text-sm text-white/60 transition hover:text-white">
+                <Icon name="mail" size={15} /> {C.email}
               </a>
             </li>
             <li className="flex items-start gap-2 text-sm text-white/60">
-              <Icon name="map" size={15} className="mt-0.5 shrink-0" /> {CONTACT.address}
+              <Icon name="map" size={15} className="mt-0.5 shrink-0" /> {C.address}
             </li>
             <li>
               <a href="/#book" className="btn bg-white text-ink mt-2 hover:-translate-y-0.5">

@@ -2,11 +2,11 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { PROGRAMS } from "@/lib/data";
+import { PROGRAMS, type Program } from "@/lib/data";
 import { Icon } from "./ui/Icon";
 import { Reveal } from "./ui/Reveal";
 
-export function CTA() {
+export function CTA({ programs = PROGRAMS }: { programs?: Program[] }) {
   const [done, setDone] = useState(false);
   const [sending, setSending] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -120,7 +120,7 @@ export function CTA() {
                         <option value="" disabled>
                           Select a program
                         </option>
-                        {PROGRAMS.map((p) => (
+                        {programs.map((p) => (
                           <option key={p.title}>{p.title}</option>
                         ))}
                       </select>

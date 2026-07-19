@@ -423,3 +423,6 @@ export const CONTACT = {
   mapsSearch: "https://www.google.com/maps/search/Masti+Ki+Paathshaala",
   hours: "Mon–Sat · 9:00 AM – 7:00 PM",
 };
+
+export type ContactInfo = typeof CONTACT;
+export type AppInfo = typeof APP;

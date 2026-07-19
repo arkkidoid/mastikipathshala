@@ -3,7 +3,17 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { GALLERY } from "@/lib/data";
+import type { IconName } from "./ui/Icon";
+import type { Accent } from "@/lib/data";
 import { accent } from "@/lib/accents";
+
+type GalleryItem = {
+  title: string;
+  accent: Accent;
+  icon: IconName;
+  h: "tall" | "mid" | "short";
+  video?: boolean;
+};
 import { Icon } from "./ui/Icon";
 import { SectionHeading } from "./ui/SectionHeading";
 import { Reveal } from "./ui/Reveal";
@@ -18,7 +28,7 @@ function Tile({
   item,
   onOpen,
 }: {
-  item: (typeof GALLERY)[number];
+  item: GalleryItem;
   onOpen: () => void;
 }) {
   const a = accent(item.accent);
@@ -57,9 +67,9 @@ function Tile({
   );
 }
 
-export function Gallery() {
+export function Gallery({ items = GALLERY }: { items?: GalleryItem[] }) {
   const [active, setActive] = useState<number | null>(null);
-  const item = active !== null ? GALLERY[active] : null;
+  const item = active !== null ? items[active] : null;
   const a = item ? accent(item.accent) : null;
 
   return (
@@ -76,7 +86,7 @@ export function Gallery() {
         />
 
         <div className="mt-14 masonry columns-1 sm:columns-2 lg:columns-3">
-          {GALLERY.map((g, i) => (
+          {items.map((g, i) => (
             <Reveal key={g.title} delay={(i % 3) * 0.08}>
               <Tile item={g} onOpen={() => setActive(i)} />
             </Reveal>
@@ -129,7 +139,7 @@ export function Gallery() {
                 <div className="flex gap-2">
                   <button
                     onClick={() =>
-                      setActive((active! - 1 + GALLERY.length) % GALLERY.length)
+                      setActive((active! - 1 + items.length) % items.length)
                     }
                     className="flex h-11 w-11 items-center justify-center rounded-full bg-cream text-ink ring-1 ring-ink/5 transition hover:bg-ink hover:text-white"
                     aria-label="Previous"
@@ -137,7 +147,7 @@ export function Gallery() {
                     <Icon name="chevron" size={20} className="rotate-90" />
                   </button>
                   <button
-                    onClick={() => setActive((active! + 1) % GALLERY.length)}
+                    onClick={() => setActive((active! + 1) % items.length)}
                     className="flex h-11 w-11 items-center justify-center rounded-full bg-cream text-ink ring-1 ring-ink/5 transition hover:bg-ink hover:text-white"
                     aria-label="Next"
                   >

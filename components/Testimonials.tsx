@@ -2,17 +2,17 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { TESTIMONIALS } from "@/lib/data";
+import { TESTIMONIALS, type Testimonial } from "@/lib/data";
 import { accent } from "@/lib/accents";
 import { Icon } from "./ui/Icon";
 import { SectionHeading } from "./ui/SectionHeading";
 import { Reveal } from "./ui/Reveal";
 
-export function Testimonials() {
+export function Testimonials({ items = TESTIMONIALS }: { items?: Testimonial[] }) {
   const [index, setIndex] = useState(0);
   const [dir, setDir] = useState(1);
   const reduce = useReducedMotion();
-  const count = TESTIMONIALS.length;
+  const count = items.length;
 
   const go = useCallback(
     (d: number) => {
@@ -28,7 +28,7 @@ export function Testimonials() {
     return () => clearInterval(id);
   }, [go, reduce]);
 
-  const t = TESTIMONIALS[index];
+  const t = items[index] ?? items[0];
   const a = accent(t.accent);
 
   return (
@@ -92,7 +92,7 @@ export function Testimonials() {
               <Icon name="chevron" size={22} className="rotate-90" />
             </button>
             <div className="flex items-center gap-2">
-              {TESTIMONIALS.map((_, i) => (
+              {items.map((_, i) => (
                 <button
                   key={i}
                   onClick={() => {

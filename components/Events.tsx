@@ -1,13 +1,13 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { EVENTS } from "@/lib/data";
+import { EVENTS, type EventItem } from "@/lib/data";
 import { accent } from "@/lib/accents";
 import { Icon } from "./ui/Icon";
 import { SectionHeading } from "./ui/SectionHeading";
 import { Reveal } from "./ui/Reveal";
 
-export function Events() {
+export function Events({ items = EVENTS }: { items?: EventItem[] }) {
   return (
     <section id="events" className="relative py-20 sm:py-28">
       <div className="container-x">
@@ -31,7 +31,7 @@ export function Events() {
         </div>
 
         <div className="mt-14 grid gap-6 sm:grid-cols-2">
-          {EVENTS.map((e, i) => {
+          {items.map((e, i) => {
             const a = accent(e.accent);
             return (
               <Reveal key={e.title} delay={(i % 2) * 0.08}>

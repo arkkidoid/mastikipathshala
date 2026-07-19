@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { accent } from "@/lib/accents";
-import { CONTACT, REELS, type Reel } from "@/lib/data";
+import { CONTACT, REELS, type Reel, type ContactInfo } from "@/lib/data";
 import { Icon } from "./ui/Icon";
 import { Reveal } from "./ui/Reveal";
 
@@ -29,12 +29,14 @@ function ReelCard({
   reel,
   active,
   muted,
+  handle,
   onToggleMute,
   registerVideo,
 }: {
   reel: Reel;
   active: boolean;
   muted: boolean;
+  handle: string;
   onToggleMute: () => void;
   registerVideo: (el: HTMLVideoElement | null) => void;
 }) {
@@ -79,7 +81,7 @@ function ReelCard({
 
       {/* bottom caption */}
       <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 via-black/25 to-transparent p-4 pt-10">
-        <p className="text-[11px] font-semibold text-white/80">{CONTACT.instagramHandle}</p>
+        <p className="text-[11px] font-semibold text-white/80">{handle}</p>
         <p className="mt-0.5 text-sm font-bold leading-snug text-white drop-shadow">{reel.caption}</p>
       </div>
 
@@ -100,9 +102,16 @@ function ReelCard({
   );
 }
 
-export function Instagram() {
+export function Instagram({
+  reels: reelsProp,
+  contact,
+}: {
+  reels?: Reel[];
+  contact?: Partial<ContactInfo>;
+}) {
   const reduce = useReducedMotion();
-  const reels = REELS;
+  const C = { ...CONTACT, ...(contact || {}) };
+  const reels = reelsProp && reelsProp.length ? reelsProp : REELS;
   const n = reels.length;
 
   const [active, setActive] = useState(0);
@@ -215,12 +224,12 @@ export function Instagram() {
               </span>
               <div>
                 <p className="font-display text-lg font-extrabold text-ink">
-                  {CONTACT.instagramHandle}
+                  {C.instagramHandle}
                 </p>
                 <p className="text-sm text-ink/55">Watch the daily joy on Instagram</p>
               </div>
             </div>
-            <a href={CONTACT.instagram} target="_blank" rel="noreferrer" className="btn-ghost">
+            <a href={C.instagram} target="_blank" rel="noreferrer" className="btn-ghost">
               <Icon name="instagram" size={16} /> Follow us
             </a>
           </div>
@@ -293,7 +302,7 @@ export function Instagram() {
                       setActive(i);
                       bump();
                     } else {
-                      window.open(CONTACT.instagram, "_blank", "noopener");
+                      window.open(C.instagram, "_blank", "noopener");
                     }
                   }}
                   aria-label={reel.caption}
@@ -311,6 +320,7 @@ export function Instagram() {
                       reel={reel}
                       active={isActive}
                       muted={muted}
+                      handle={C.instagramHandle}
                       onToggleMute={() => {
                         setMuted((m) => !m);
                         bump();

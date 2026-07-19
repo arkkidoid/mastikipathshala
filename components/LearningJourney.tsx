@@ -2,12 +2,16 @@
 
 import { motion } from "framer-motion";
 import { JOURNEY } from "@/lib/data";
+import type { IconName } from "./ui/Icon";
+import type { Accent } from "@/lib/data";
 import { accent } from "@/lib/accents";
 import { Icon } from "./ui/Icon";
 import { SectionHeading } from "./ui/SectionHeading";
 import { Reveal } from "./ui/Reveal";
 
-export function LearningJourney() {
+type Step = { step: string; icon: IconName; accent: Accent; desc: string };
+
+export function LearningJourney({ items = JOURNEY }: { items?: Step[] }) {
   return (
     <section className="relative py-20 sm:py-28">
       <div className="container-x">
@@ -26,7 +30,7 @@ export function LearningJourney() {
           <div className="absolute left-0 right-0 top-9 hidden h-0.5 bg-gradient-to-r from-sky via-mint to-orange lg:block" />
 
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-5 lg:gap-4">
-            {JOURNEY.map((j, i) => {
+            {items.map((j, i) => {
               const a = accent(j.accent);
               return (
                 <Reveal key={j.step} delay={i * 0.1}>

@@ -2,46 +2,31 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { CONTACT, PROGRAMS } from "@/lib/data";
+import { CONTACT, PROGRAMS, type ContactInfo, type Program } from "@/lib/data";
 import { Icon, IconName } from "./ui/Icon";
 import { SectionHeading } from "./ui/SectionHeading";
 import { Reveal } from "./ui/Reveal";
 
-const CHANNELS: {
-  icon: IconName;
-  label: string;
-  value: string;
-  href: string;
-  tint: string;
-  text: string;
-}[] = [
-  {
-    icon: "phone",
-    label: "Call us",
-    value: CONTACT.phone,
-    href: CONTACT.phoneHref,
-    tint: "bg-orange-tint",
-    text: "text-orange",
-  },
-  {
-    icon: "whatsapp",
-    label: "WhatsApp",
-    value: "Chat with our team",
-    href: CONTACT.whatsapp,
-    tint: "bg-mint-tint",
-    text: "text-mint",
-  },
-  {
-    icon: "mail",
-    label: "Email",
-    value: CONTACT.email,
-    href: `mailto:${CONTACT.email}`,
-    tint: "bg-sky-tint",
-    text: "text-sky",
-  },
-];
-
-export function Contact() {
+export function Contact({
+  contact,
+  programs = PROGRAMS,
+}: {
+  contact?: Partial<ContactInfo>;
+  programs?: Program[];
+}) {
+  const C = { ...CONTACT, ...(contact || {}) };
+  const CHANNELS: {
+    icon: IconName;
+    label: string;
+    value: string;
+    href: string;
+    tint: string;
+    text: string;
+  }[] = [
+    { icon: "phone", label: "Call us", value: C.phone, href: C.phoneHref, tint: "bg-orange-tint", text: "text-orange" },
+    { icon: "whatsapp", label: "WhatsApp", value: "Chat with our team", href: C.whatsapp, tint: "bg-mint-tint", text: "text-mint" },
+    { icon: "mail", label: "Email", value: C.email, href: `mailto:${C.email}`, tint: "bg-sky-tint", text: "text-sky" },
+  ];
   const [done, setDone] = useState(false);
   const [sending, setSending] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -127,9 +112,9 @@ export function Contact() {
                   </span>
                   <div>
                     <p className="font-bold text-ink">Visit a branch near you</p>
-                    <p className="text-sm text-ink/60">{CONTACT.address}</p>
+                    <p className="text-sm text-ink/60">{C.address}</p>
                     <p className="mt-1 flex items-center gap-1.5 text-xs font-semibold text-ink/45">
-                      <Icon name="clock" size={13} /> {CONTACT.hours}
+                      <Icon name="clock" size={13} /> {C.hours}
                     </p>
                   </div>
                 </div>
@@ -146,10 +131,10 @@ export function Contact() {
                       <Icon name="map" size={28} />
                     </span>
                     <p className="mt-3 max-w-[15rem] text-sm font-semibold text-ink/70">
-                      {CONTACT.addressShort} — we'll help you find the nearest one.
+                      {C.addressShort} — we'll help you find the nearest one.
                     </p>
                     <a
-                      href={CONTACT.mapsSearch}
+                      href={C.mapsSearch}
                       target="_blank"
                       rel="noreferrer"
                       className="btn-ink mt-4 !py-2.5 text-xs"
@@ -161,7 +146,7 @@ export function Contact() {
 
                 {/* Instagram row */}
                 <a
-                  href={CONTACT.instagram}
+                  href={C.instagram}
                   target="_blank"
                   rel="noreferrer"
                   className="flex items-center gap-3 border-t border-ink/5 p-4 transition hover:bg-cream"
@@ -169,7 +154,7 @@ export function Contact() {
                   <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-rose via-orange to-sun text-white">
                     <Icon name="instagram" size={18} />
                   </span>
-                  <span className="text-sm font-bold text-ink">{CONTACT.instagramHandle}</span>
+                  <span className="text-sm font-bold text-ink">{C.instagramHandle}</span>
                   <span className="ml-auto text-xs font-semibold text-ink/45">Follow us →</span>
                 </a>
               </div>
@@ -229,7 +214,7 @@ export function Contact() {
                         <option value="" disabled>
                           Select
                         </option>
-                        {PROGRAMS.map((p) => (
+                        {programs.map((p) => (
                           <option key={p.title}>{p.title}</option>
                         ))}
                       </select>

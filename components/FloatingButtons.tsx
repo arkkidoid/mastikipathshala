@@ -2,11 +2,12 @@
 
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { CONTACT } from "@/lib/data";
+import { CONTACT, type ContactInfo } from "@/lib/data";
 import { Icon } from "./ui/Icon";
 
-export function FloatingButtons() {
+export function FloatingButtons({ contact }: { contact?: Partial<ContactInfo> }) {
   const [show, setShow] = useState(false);
+  const C = { ...CONTACT, ...(contact || {}) };
 
   useEffect(() => {
     const onScroll = () => setShow(window.scrollY > 600);
@@ -34,7 +35,7 @@ export function FloatingButtons() {
         </AnimatePresence>
 
         <motion.a
-          href={CONTACT.whatsapp}
+          href={C.whatsapp}
           target="_blank"
           rel="noreferrer"
           className="group relative flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-soft-lg"

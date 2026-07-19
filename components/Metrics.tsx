@@ -5,6 +5,8 @@ import { animate, useInView, useReducedMotion } from "framer-motion";
 import { METRICS } from "@/lib/data";
 import { Reveal } from "./ui/Reveal";
 
+type Metric = { value: number; suffix: string; label: string };
+
 function Counter({ value, suffix }: { value: number; suffix: string }) {
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
@@ -33,7 +35,7 @@ function Counter({ value, suffix }: { value: number; suffix: string }) {
   );
 }
 
-export function Metrics() {
+export function Metrics({ items = METRICS }: { items?: Metric[] }) {
   return (
     <section className="relative py-8">
       <div className="container-x">
@@ -54,7 +56,7 @@ export function Metrics() {
             </div>
 
             <div className="relative mt-12 grid grid-cols-2 gap-8 sm:grid-cols-3 lg:grid-cols-5">
-              {METRICS.map((m, i) => (
+              {items.map((m, i) => (
                 <Reveal key={m.label} delay={i * 0.08}>
                   <div className="text-center">
                     <p className="font-display text-4xl font-extrabold text-white sm:text-5xl">

@@ -3,12 +3,16 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { FEATURES } from "@/lib/data";
+import type { IconName } from "./ui/Icon";
+import type { Accent } from "@/lib/data";
 import { accent } from "@/lib/accents";
 import { Icon } from "./ui/Icon";
 import { SectionHeading } from "./ui/SectionHeading";
 import { Reveal } from "./ui/Reveal";
 
-export function WhyChooseUs() {
+type Feature = { title: string; icon: IconName; accent: Accent; desc: string };
+
+export function WhyChooseUs({ features = FEATURES }: { features?: Feature[] }) {
   return (
     <section id="about" className="relative py-20 sm:py-28">
       <div className="container-x">
@@ -91,7 +95,7 @@ export function WhyChooseUs() {
           />
 
           <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {FEATURES.map((f, i) => {
+            {features.map((f, i) => {
               const a = accent(f.accent);
               return (
                 <Reveal key={f.title} delay={(i % 3) * 0.08}>

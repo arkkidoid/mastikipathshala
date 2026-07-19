@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { APP } from "@/lib/data";
+import { APP, type AppInfo } from "@/lib/data";
 import { Icon, IconName } from "./ui/Icon";
 import { Reveal } from "./ui/Reveal";
 
@@ -196,9 +196,10 @@ const TABS = [
   { key: "teachers", label: "For Teachers" },
 ] as const;
 
-export function AppShowcase() {
+export function AppShowcase({ app }: { app?: Partial<AppInfo> }) {
   const [tab, setTab] = useState<"parents" | "teachers">("parents");
   const reduce = useReducedMotion();
+  const APPX = { ...APP, ...(app || {}) };
 
   return (
     <section id="app" className="relative py-16 sm:py-24">
@@ -213,7 +214,7 @@ export function AppShowcase() {
               <div className="text-center lg:text-left">
                 <span className="eyebrow">
                   <span className="h-1.5 w-1.5 rounded-full bg-orange" />
-                  {APP.name} · Mobile App
+                  {APPX.name} · Mobile App
                 </span>
 
                 <h2 className="heading mt-5 text-3xl sm:text-4xl md:text-[2.75rem]">
@@ -222,7 +223,7 @@ export function AppShowcase() {
                 </h2>
 
                 <p className="mx-auto mt-4 max-w-lg text-base leading-relaxed text-ink/65 lg:mx-0">
-                  {APP.name} keeps our whole community connected — parents stay in the
+                  {APPX.name} keeps our whole community connected — parents stay in the
                   loop, and mentors stay organised. Free for every enrolled family.
                 </p>
 
@@ -252,13 +253,13 @@ export function AppShowcase() {
                 {/* Store badges */}
                 <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row lg:justify-start">
                   <StoreBadge
-                    href={APP.playStore}
+                    href={APPX.playStore}
                     glyph={<PlayGlyph />}
                     top="Get it on"
                     bottom="Google Play"
                   />
                   <StoreBadge
-                    href={APP.appStore}
+                    href={APPX.appStore}
                     glyph={<AppleGlyph />}
                     top="Download on the"
                     bottom="App Store"
@@ -339,7 +340,7 @@ export function AppShowcase() {
                         <div className="min-w-0">
                           <p className="text-[9px] leading-none text-ink/45">Welcome back</p>
                           <p className="mt-0.5 font-display text-xs font-extrabold leading-none text-ink">
-                            {APP.name}
+                            {APPX.name}
                           </p>
                         </div>
                         <span className="ml-auto flex h-7 w-7 items-center justify-center rounded-full bg-white text-ink/60 shadow-card">

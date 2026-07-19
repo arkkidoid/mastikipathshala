@@ -1,13 +1,13 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { PROGRAMS } from "@/lib/data";
+import { PROGRAMS, type Program } from "@/lib/data";
 import { accent } from "@/lib/accents";
 import { Icon } from "./ui/Icon";
 import { SectionHeading } from "./ui/SectionHeading";
 import { Reveal } from "./ui/Reveal";
 
-export function Programs() {
+export function Programs({ items = PROGRAMS }: { items?: Program[] }) {
   return (
     <section id="programs" className="relative py-20 sm:py-28">
       <div className="container-x">
@@ -22,7 +22,7 @@ export function Programs() {
         />
 
         <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {PROGRAMS.map((p, i) => {
+          {items.map((p, i) => {
             const a = accent(p.accent);
             return (
               <Reveal key={p.title} delay={(i % 3) * 0.08}>

@@ -7,7 +7,9 @@ import { Icon } from "./ui/Icon";
 import { SectionHeading } from "./ui/SectionHeading";
 import { Reveal } from "./ui/Reveal";
 
-export function FAQ() {
+type Faq = { q: string; a: string };
+
+export function FAQ({ items = FAQS }: { items?: Faq[] }) {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
@@ -39,7 +41,7 @@ export function FAQ() {
         </div>
 
         <div className="space-y-4">
-          {FAQS.map((f, i) => {
+          {items.map((f, i) => {
             const isOpen = open === i;
             return (
               <Reveal key={f.q} delay={i * 0.05}>

@@ -1,13 +1,13 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { MENTORS } from "@/lib/data";
+import { MENTORS, type Mentor } from "@/lib/data";
 import { accent } from "@/lib/accents";
 import { Icon } from "./ui/Icon";
 import { SectionHeading } from "./ui/SectionHeading";
 import { Reveal } from "./ui/Reveal";
 
-export function Mentors() {
+export function Mentors({ items = MENTORS }: { items?: Mentor[] }) {
   return (
     <section className="relative py-20 sm:py-28">
       <div className="container-x">
@@ -22,7 +22,7 @@ export function Mentors() {
         />
 
         <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {MENTORS.map((m, i) => {
+          {items.map((m, i) => {
             const a = accent(m.accent);
             return (
               <Reveal key={m.name} delay={i * 0.08}>

@@ -387,6 +387,28 @@ export const APP = {
   appStore: "https://apps.apple.com/search?term=ARK+Kidoid",
 };
 
+// Instagram Reels carousel.
+// `src` = video URL (Cloudinary/MP4). `poster` = preview image URL.
+// Leave both undefined to render a branded placeholder card — the layout never breaks.
+export type Reel = {
+  id: string;
+  src?: string;
+  poster?: string;
+  caption: string;
+  accent: Accent;
+  icon: IconName;
+};
+
+export const REELS: Reel[] = [
+  { id: "r1", caption: "Robotics lab in action", accent: "sky", icon: "robot" },
+  { id: "r2", caption: "Annual dance recital", accent: "rose", icon: "dance" },
+  { id: "r3", caption: "Young coders at work", accent: "grape", icon: "code" },
+  { id: "r4", caption: "Little artists, big ideas", accent: "sun", icon: "art" },
+  { id: "r5", caption: "Chess champions rising", accent: "mint", icon: "chess" },
+  { id: "r6", caption: "Music & rhythm class", accent: "orange", icon: "music" },
+  { id: "r7", caption: "Speak-up on stage", accent: "sky", icon: "mic" },
+];
+
 export const CONTACT = {
   phone: "+91 98800 53702",
   phoneHref: "tel:+919880053702",

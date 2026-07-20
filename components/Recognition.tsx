@@ -12,14 +12,6 @@ const AWARDS: { icon: IconName; title: string; sub: string; accent: string }[] =
   { icon: "check", title: "ISO Quality Assured", sub: "Curriculum standards", accent: "text-sky" },
 ];
 
-const PARTNERS = [
-  "Sunrise Public School",
-  "Little Scholars",
-  "Green Valley Academy",
-  "Bright Minds International",
-  "St. Xavier's Prep",
-];
-
 export function Recognition() {
   return (
     <section className="relative py-16">
@@ -28,10 +20,10 @@ export function Recognition() {
           eyebrow="Trust & Recognition"
           title={
             <>
-              Awards, certifications & <span className="text-gradient">proud partners</span>
+              Awards & <span className="text-gradient">certifications</span>
             </>
           }
-          subtitle="Recognised for quality and safety, and trusted by leading schools across the city."
+          subtitle="Recognised for the quality and safety of everything we do."
         />
 
         <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
@@ -52,23 +44,6 @@ export function Recognition() {
             </Reveal>
           ))}
         </div>
-
-        {/* Partner schools */}
-        <Reveal delay={0.1}>
-          <div className="mt-8 rounded-4xl bg-white p-6 shadow-card ring-1 ring-ink/5">
-            <p className="text-center text-xs font-bold uppercase tracking-widest text-ink/40">
-              Partner schools who trust us
-            </p>
-            <div className="mt-5 flex flex-wrap items-center justify-center gap-x-8 gap-y-4">
-              {PARTNERS.map((p) => (
-                <span key={p} className="flex items-center gap-2 text-sm font-bold text-ink/45">
-                  <Icon name="flag" size={16} className="text-orange" />
-                  {p}
-                </span>
-              ))}
-            </div>
-          </div>
-        </Reveal>
 
         {/* Brochure download */}
         <Reveal delay={0.15}>

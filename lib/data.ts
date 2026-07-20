@@ -380,6 +380,23 @@ export const GALLERY: {
   { title: "Speak-Up Stage", accent: "sky", icon: "mic", h: "short" },
 ];
 
+export type Partner = {
+  name: string;
+  category: string;
+  logo?: string; // image URL; falls back to a monogram tile if empty
+  url?: string;
+  accent: Accent;
+};
+
+export const PARTNERS: Partner[] = [
+  { name: "Sunrise Public School", category: "School", accent: "orange", url: "", logo: "" },
+  { name: "Green Valley Academy", category: "School", accent: "mint", url: "", logo: "" },
+  { name: "Little Scholars", category: "Institution", accent: "sky", url: "", logo: "" },
+  { name: "Bright Minds International", category: "Institution", accent: "grape", url: "", logo: "" },
+  { name: "St. Xavier's Prep", category: "School", accent: "rose", url: "", logo: "" },
+  { name: "TechKids Foundation", category: "NGO", accent: "sun", url: "", logo: "" },
+];
+
 // Mobile app. TODO: replace appStore with the real listing once published on iOS.
 export const APP = {
   name: "ARK Kidoid",

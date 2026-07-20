@@ -9,6 +9,7 @@ import {
   FAQS,
   GALLERY,
   REELS,
+  PARTNERS,
   CONTACT,
   APP,
 } from "@/lib/data";
@@ -310,6 +311,38 @@ export const SECTIONS: Section[] = [
       accentField(),
     ],
     defaults: REELS as unknown as Record<string, unknown>[],
+  },
+
+  {
+    slug: "partners",
+    label: "Partners",
+    singular: "Partner",
+    group: "Social Proof",
+    kind: "collection",
+    icon: "🤝",
+    description: "Partner schools & institutions. Paste a logo URL, or leave blank for a monogram tile.",
+    titleField: "name",
+    fields: [
+      { name: "name", label: "Partner name", type: "text", required: true },
+      {
+        name: "category",
+        label: "Category",
+        type: "select",
+        half: true,
+        options: [
+          { value: "School", label: "School" },
+          { value: "Institution", label: "Institution" },
+          { value: "University", label: "University" },
+          { value: "Company", label: "Company" },
+          { value: "NGO", label: "NGO" },
+          { value: "Other", label: "Other" },
+        ],
+      },
+      accentField(),
+      { name: "logo", label: "Logo image URL", type: "image", help: "Square/landscape logo. Blank = monogram tile." },
+      { name: "url", label: "Website URL", type: "url", help: "Optional — makes the card clickable." },
+    ],
+    defaults: PARTNERS as unknown as Record<string, unknown>[],
   },
 
   /* ---------------- Site Info ---------------- */

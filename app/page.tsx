@@ -9,6 +9,7 @@ import { Mentors } from "@/components/Mentors";
 import { AppShowcase } from "@/components/AppShowcase";
 import { Testimonials } from "@/components/Testimonials";
 import { Events } from "@/components/Events";
+import { Partners } from "@/components/Partners";
 import { Recognition } from "@/components/Recognition";
 import { CTA } from "@/components/CTA";
 import { FAQ } from "@/components/FAQ";
@@ -35,6 +36,7 @@ export default async function Home() {
         <Mentors items={c.mentors} />
         <AppShowcase app={c.app} />
         <Testimonials items={c.testimonials} />
+        <Partners items={c.partners} />
         <Events items={c.events} />
         <Recognition />
         <CTA programs={c.programs} />

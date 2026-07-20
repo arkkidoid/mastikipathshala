@@ -363,21 +363,21 @@ export const FAQS = [
   },
 ];
 
-export const GALLERY: {
-  title: string;
-  accent: Accent;
-  icon: IconName;
-  h: "tall" | "mid" | "short";
-  video?: boolean;
-}[] = [
-  { title: "Robotics Lab Day", accent: "sky", icon: "robot", h: "tall" },
-  { title: "Annual Dance Recital", accent: "rose", icon: "dance", h: "mid", video: true },
-  { title: "Young Coders Meetup", accent: "grape", icon: "code", h: "short" },
-  { title: "Chess Tournament", accent: "ink" as Accent, icon: "chess", h: "mid" },
-  { title: "Art Exhibition", accent: "sun", icon: "art", h: "tall" },
-  { title: "Music Showcase", accent: "orange", icon: "music", h: "short", video: true },
-  { title: "Storytelling Circle", accent: "mint", icon: "story", h: "mid" },
-  { title: "Speak-Up Stage", accent: "sky", icon: "mic", h: "short" },
+export type GalleryImage = {
+  title?: string; // optional caption
+  image?: string; // image URL; a placeholder tile shows if empty
+  h: "tall" | "mid" | "short"; // tile size in the masonry
+};
+
+export const GALLERY: GalleryImage[] = [
+  { title: "Robotics Lab Day", image: "", h: "tall" },
+  { title: "Annual Dance Recital", image: "", h: "mid" },
+  { title: "Young Coders Meetup", image: "", h: "short" },
+  { title: "Chess Tournament", image: "", h: "mid" },
+  { title: "Art Exhibition", image: "", h: "tall" },
+  { title: "Music Showcase", image: "", h: "short" },
+  { title: "Storytelling Circle", image: "", h: "mid" },
+  { title: "Speak-Up Stage", image: "", h: "short" },
 ];
 
 export type Partner = {

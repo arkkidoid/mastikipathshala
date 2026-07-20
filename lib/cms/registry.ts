@@ -318,9 +318,10 @@ export const SECTIONS: Section[] = [
     group: "Social Proof",
     kind: "collection",
     icon: "🤝",
-    description: "Partner schools & institutions. Paste a logo URL, or leave blank for a monogram tile.",
+    description: "Partner schools & institutions, shown as auto-scrolling image cards.",
     titleField: "name",
     fields: [
+      { name: "image", label: "Photo / hero image URL", type: "image", help: "A nice wide photo of the school/institution. Blank = coloured card with initials." },
       { name: "name", label: "Partner name", type: "text", required: true },
       {
         name: "category",
@@ -337,7 +338,6 @@ export const SECTIONS: Section[] = [
         ],
       },
       accentField(),
-      { name: "logo", label: "Logo image URL", type: "image", help: "Square/landscape logo. Blank = monogram tile." },
       { name: "url", label: "Website URL", type: "url", help: "Optional — makes the card clickable." },
     ],
     defaults: PARTNERS as unknown as Record<string, unknown>[],
